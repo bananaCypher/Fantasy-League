@@ -1,0 +1,12 @@
+<h1><%= @team.name %></h1>
+<p><%= @team.name %>'s mascot is <%= @team.mascot %></p>
+<%= image_tag(@team.image, alt:'No image', width: 200) %>
+<h1>Players</h1>
+<% @players.each do |player| %>
+  <p><%= player.name %>(<%= player.species %>), age <%= player.age %> plays <%= player.position %></p>
+<% end %>
+
+<h1>Sponsors</h1>
+<% @sponsors.each do |sponsor| %>
+  <p><%= sponsor.name %>(<%= sponsor.business_type %>), has invested <%= sponsor.spend %> with <%= @team.name %>.</p>  
+<% end %>
