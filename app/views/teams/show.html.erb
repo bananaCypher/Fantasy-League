@@ -4,6 +4,16 @@
 <h1>Players</h1>
 <% @players.each do |player| %>
   <p><%= player.name %>(<%= player.species %>), age <%= player.age %> plays <%= player.position %></p>
+  <form action='/teams/swap_player' method='post'>
+    <input type='hidden' value="<%= player.id %>" name='player_id'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <select name='team_id'>
+      <% @teams.each do |team| %>
+        <option value="<%= team.id %>"><%= team.name %></option>
+      <% end %>
+    </select>
+    <input type="submit" value="Swap to team">
+  </form>
 <% end %>
 
 <h1>Sponsors</h1>

@@ -16,6 +16,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @players = @team.players
     @sponsors = @team.sponsors
+    @teams = Team.all
   end
 
   def edit
@@ -30,6 +31,15 @@ class TeamsController < ApplicationController
 
   def destroy
     Team.find(params[:id]).destroy
+    redirect_to(teams_path)
+  end
+
+  def swap_team
+    puts params[:player_id]
+    puts params[:team_id]
+    Player.find(params[:player_id]).update(team: nil)
+    Player.find(params[:player_id]).update(team: Team.find(params[:team_id]))
+    puts "#{params[:player_id]} switched to team #{params[:team_id]}"
     redirect_to(teams_path)
   end
 
